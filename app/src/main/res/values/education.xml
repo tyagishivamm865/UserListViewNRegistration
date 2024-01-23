@@ -1,0 +1,8 @@
+<resources>
+    <array name="education_levels">
+        <item>High School</item>
+        <item>Bachelor\'s Degree</item>
+        <item>Master\'s Degree</item>
+        <item>Doctorate</item>
+    </array>
+</resources>

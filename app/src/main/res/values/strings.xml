@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">UserListViewNRegistration</string>
+    <string name="education">Educational Info</string>
+    <string name="edu">Education*</string>
+    <string name="yop">Year Of Passing*</string>
+    <string name="grade">Grade*</string>
+    <string name="prof">Professional Info</string>
+    <string name="exp">Experience*</string>
+    <string name="designation">Designation*</string>
+    <string name="domain">Domain</string>
 </resources>
