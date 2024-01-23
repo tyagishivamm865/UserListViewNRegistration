@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".YourAdress">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/info_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:titleTextColor="@color/black"
+        android:textAlignment="center"
+        app:titleMarginStart="70dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="30dp"
+    app:layout_constraintTop_toBottomOf="@id/info_toolbar"
+    tools:context=".YourAdress">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="16dp">
+
+        <EditText  android:id="@+id/etaddress"
+            android:hint="@string/address"
+            android:inputType="text"
+            style="@style/edittText_bg"
+            android:drawableLeft="@drawable/ic_baseline_location_city_24"/>
+
+        <EditText  android:id="@+id/etlandmark"
+            android:hint="@string/landmark"
+            android:inputType="text"
+            style="@style/edittText_bg"
+            android:drawableLeft="@drawable/ic_baseline_location_city_24"/>
+
+        <EditText  android:id="@+id/etcity"
+            android:hint="@string/city"
+            android:inputType="text"
+            style="@style/edittText_bg"
+            android:drawableLeft="@drawable/ic_baseline_location_city_24"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp">
+
+            <AutoCompleteTextView
+                android:id="@+id/drop3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="none"
+                android:textColorHint="#8E8E8E"
+                android:text="@string/state"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <EditText  android:id="@+id/etpin"
+            android:hint="@string/pin"
+            android:inputType="text"
+            style="@style/edittText_bg"
+            android:drawableLeft="@drawable/ic_baseline_location_city_24"/>
+
+        <Button
+            android:id="@+id/btnNext"
+            style="@style/button_bg"
+            android:background="@drawable/button_rounded"
+            android:text="Submit"
+            android:textColor="@color/white"
+            android:layout_marginBottom="25dp"
+            />
+
+    </LinearLayout>
+
+
+
+</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

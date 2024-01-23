@@ -8,4 +8,9 @@
     <string name="exp">Experience*</string>
     <string name="designation">Designation*</string>
     <string name="domain">Domain</string>
+    <string name="address">Address</string>
+    <string name="landmark">Landmark</string>
+    <string name="city">City</string>
+    <string name="state">Select Your State</string>
+    <string name="pin">Pin Code</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.apps.userlistviewnregistration
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
@@ -16,6 +17,8 @@ class YourInfo : AppCompatActivity() {
         setSupportActionBar(binding.infoToolbar)
         supportActionBar?.title = "Your Info"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
+         binding.Button03.setOnClickListener{
+             startActivity(Intent(this,YourAdress::class.java))
+         }
     }
 }
