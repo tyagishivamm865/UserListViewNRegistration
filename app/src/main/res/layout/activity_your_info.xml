@@ -62,7 +62,7 @@
                     android:layout_marginTop="25dp">
 
                     <AutoCompleteTextView
-                        android:id="@+id/drop1"
+                        android:id="@+id/dropedu"
                         style="@style/edittText_bg"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -116,8 +116,7 @@
                 <EditText
                     android:id="@+id/etgrade"
                     style="@style/edittText_bg"
-                    android:hint="Enter Your Grade Or Percentage"
-                    android:inputType="number" />
+                    android:hint="Enter Your Grade Or Percentage"/>
 
             </androidx.cardview.widget.CardView>
 
@@ -149,7 +148,7 @@
                     android:id="@+id/etExperience"
                     style="@style/edittText_bg"
                     android:hint="Enter The Years Of Experience"
-                    android:inputType="textEmailAddress"/>
+                    android:inputType="number"/>
             </androidx.cardview.widget.CardView>
 
 
@@ -175,7 +174,7 @@
                     android:layout_marginTop="25dp">
 
                     <AutoCompleteTextView
-                        android:id="@+id/drop3"
+                        android:id="@+id/dropdesignation"
                         style="@style/edittText_bg"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -209,7 +208,7 @@
                     android:layout_marginTop="25dp">
 
                     <AutoCompleteTextView
-                        android:id="@+id/drop4"
+                        android:id="@+id/dropDomain"
                         style="@style/edittText_bg"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -229,7 +228,7 @@
                 android:layout_marginBottom="25dp">
 
                 <Button
-                    android:id="@+id/Button02"
+                    android:id="@+id/btnPrev"
                     style="@style/button_bg"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
@@ -238,7 +237,7 @@
                     android:text="Previous"
                     android:textColor="@color/white"/>
                 <Button
-                    android:id="@+id/Button03"
+                    android:id="@+id/btnNext"
                     style="@style/button_bg"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"

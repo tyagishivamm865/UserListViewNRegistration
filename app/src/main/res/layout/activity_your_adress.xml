@@ -57,25 +57,25 @@
             android:layout_marginTop="25dp">
 
             <AutoCompleteTextView
-                android:id="@+id/drop3"
+                android:id="@+id/dropstate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:inputType="none"
                 android:textColorHint="#8E8E8E"
-                android:text="@string/state"
+                android:hint="Select Your State"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <EditText  android:id="@+id/etpin"
             android:hint="@string/pin"
-            android:inputType="text"
+            android:inputType="number"
             style="@style/edittText_bg"
             android:drawableLeft="@drawable/ic_baseline_location_city_24"/>
 
         <Button
-            android:id="@+id/btnNext"
+            android:id="@+id/btnSubmit"
             style="@style/button_bg"
             android:background="@drawable/button_rounded"
             android:text="Submit"
