@@ -1,14 +1,16 @@
 package com.apps.userlistviewnregistration.model
 
 import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.Relation
 
 
 @Entity(tableName = "user_registration")
 data class UserRegistration(
     @PrimaryKey(autoGenerate = true)
-    var id: Long = 0,
+    val userId: Long = 0,
     @ColumnInfo(name = "first_name")
     val first_name:String?,
     @ColumnInfo(name = "last_name")
@@ -26,21 +28,37 @@ data class UserRegistration(
 @Entity(tableName = "user_info")
 data class UserInfo(
     @PrimaryKey(autoGenerate = true)
-    var id: Long = 0,
-    var education:String,
-    var year_of_passing:String,
-    var grade:String,
-    var experience:Int,
-    var designation:String,
-    var domain:String,
+    val info_id: Long = 0,
+    val userId:Long,
+    val education:String?,
+    val year_of_passing:String,
+    val grade:String,
+    val experience:Int,
+    val designation:String,
+    val domain:String,
 )
 @Entity(tableName = "user_Adress")
 data class UserAdress(
     @PrimaryKey(autoGenerate = true)
-    var id: Long = 0,
-    var address:String,
-    var landmark:String,
-    var city:String,
-    var state:String,
-    var pincode:String
+    val add_id: Long = 0,
+    val userId: Long,
+    val address:String,
+    val landmark:String,
+    val city:String,
+    val state:String,
+    val pincode:String
+)
+
+data class CombinedDataEntity(
+    @Embedded val UserRegistration: UserRegistration,
+    @Relation(
+        parentColumn = "userId",
+        entityColumn = "userId"
+    )
+    val educationInfo: UserInfo?,
+    @Relation(
+        parentColumn = "userId",
+        entityColumn = "userId"
+    )
+    val addressInfo: UserAdress
 )

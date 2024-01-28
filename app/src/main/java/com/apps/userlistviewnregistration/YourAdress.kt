@@ -50,7 +50,7 @@ class YourAdress : AppCompatActivity() {
             val pincode = binding.etpin.text.toString()
             val city = binding.etcity.text.toString()
 
-            viewModel.addlivedata.value = UserAdress(0,address,landmark,city,selectedstate,pincode)
+            viewModel.addlivedata.value = UserAdress(0,0,address,landmark,city,selectedstate,pincode)
 
             lifecycleScope.launch {
                 viewModel.insertUserAddress()

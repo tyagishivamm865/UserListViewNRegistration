@@ -10,6 +10,7 @@
         android:id="@+id/circularimgprev"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:src="@color/black"
         />
 <LinearLayout
     android:layout_width="wrap_content"
@@ -18,22 +19,22 @@
     android:layout_marginStart="20dp"
     >
     <TextView
-        android:id="@+id/city"
+        android:id="@+id/fname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Title"/>
+        android:text="Titlefdsfsg"/>
 
     <TextView
-        android:id="@+id/state"
+        android:id="@+id/city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Description"/>
 </LinearLayout>
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="250dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="50dp"
         android:src="@drawable/baseline_navigate_next_24"
         />
 </LinearLayout>

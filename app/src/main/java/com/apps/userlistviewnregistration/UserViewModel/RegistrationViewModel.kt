@@ -1,10 +1,12 @@
 package com.apps.userlistviewnregistration.UserViewModel
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.apps.userlistviewnregistration.Database.UserRepository
+import com.apps.userlistviewnregistration.model.CombinedDataEntity
 import com.apps.userlistviewnregistration.model.UserAdress
 import com.apps.userlistviewnregistration.model.UserInfo
 import com.apps.userlistviewnregistration.model.UserRegistration
@@ -32,6 +34,10 @@ class RegistrationViewModel(private val userRepository: UserRepository) : ViewMo
         addlivedata.let {
             userRepository.insertUserAddress(addlivedata.value!!)
         }
+    }
+
+     fun getCombinedData(): LiveData<List<CombinedDataEntity>>? {
+           return  userRepository.getAllCombinedData()
     }
 
 }

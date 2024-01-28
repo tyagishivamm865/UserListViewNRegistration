@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.apps.userlistviewnregistration.Dao.CombinedUserDao
 import com.apps.userlistviewnregistration.Dao.UserInfoDao
 import com.apps.userlistviewnregistration.Dao.UserRegistrationDao
 import com.apps.userlistviewnregistration.Dao.UserUserAddressDao
@@ -16,6 +17,7 @@ abstract class UserDb : RoomDatabase() {
     abstract fun userRegDao(): UserRegistrationDao
     abstract fun userInfoDao(): UserInfoDao
     abstract fun userAddDao(): UserUserAddressDao
+    abstract fun usercombineDao(): CombinedUserDao
 
     companion object {
 

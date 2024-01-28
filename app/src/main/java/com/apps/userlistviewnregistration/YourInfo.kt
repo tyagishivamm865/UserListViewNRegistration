@@ -73,11 +73,11 @@ class YourInfo : AppCompatActivity() {
         binding.btnNext.setOnClickListener{
 
 
-val yearofpassing = binding.etYop.text.toString()
+            val yearofpassing = binding.etYop.text.toString()
             val experience = binding.etExperience.text.toString()
 
             val grade = binding.etgrade.text.toString()
-            viewModel.infolivedata.value = UserInfo(0,eduselected,yearofpassing,grade,experience.toInt(),desiselected,domselected)
+            viewModel.infolivedata.value = UserInfo(0,0,"eduselected",yearofpassing,grade,experience.toInt(),desiselected,domselected)
             lifecycleScope.launch{
                viewModel.insertUserInfo()
             }
