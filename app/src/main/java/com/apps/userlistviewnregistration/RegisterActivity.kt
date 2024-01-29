@@ -24,7 +24,6 @@ import java.util.regex.Pattern
 class RegisterActivity : AppCompatActivity() {
     var binding : ActivityRegisterBinding? = null
     lateinit var viewModel: RegistrationViewModel
-    lateinit var first_name:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,57 +39,6 @@ class RegisterActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this,ViewModelFactory(repo)).get(RegistrationViewModel::class.java)
 
 
-//        binding!!.firstNameEditText.addTextChangedListener(object : TextWatcher{
-//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-//                TODO("Not yet implemented")
-//            }
-//
-//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-//                TODO("Not yet implemented")
-//            }
-//
-//            override fun afterTextChanged(s: Editable?) {
-//                if(s != null){
-//                      first_name = s.toString()
-//                } else {
-//                first_name = "raw"
-//                    // Handle the case when `s` is null (text is cleared or set to null)
-//                }
-//            }
-//
-//        })
-
-
-
-
-//        if (isValidMobileNumber(mob)) {
-//            val mobileNumber = mob.toLong()
-//        } else {
-//            binding!!.phoneEditText.error = "Enter a valid 10-digit mobile number"
-//        }
-
-
-//        if (isValidEmail(em)) {
-//
-//        } else {
-//            binding!!.emailEditText.error = "Please Enter a valid email"
-//        }
-
-//        if (isValidPassword(password)) {
-//
-//        } else {
-//            binding!!.passwordEditText.error = "Please Enter a valid email"
-//        }
-
-
-//        if(confmpswd.equals(password)){
-//
-//        }
-//        else{
-//            binding!!.confirmPasswordEditText.error = "Please confirm your password again"
-//        }
-
-
         binding!!.nextButton.setOnClickListener{
             val firstname = binding!!.firstNameEditText.text.toString()
             val lastname = binding!!.lastNameEditText.text.toString()
@@ -99,41 +47,107 @@ class RegisterActivity : AppCompatActivity() {
             val password = binding!!.passwordEditText.text.toString()
             val confmpswd = binding!!.confirmPasswordEditText.text.toString()
 
+            if(isValidFirstName(firstname) && isValidLastName(lastname) && isValidMobileNumber(mob) && isValidEmail(em)
+                && isValidPassword(password) && isValidConfirmpassword(password,confmpswd)){
+                viewModel.reglivedata.value =
+                    UserRegistration(0, firstname, lastname, mob.toLong(), em, password, confmpswd)
 
-            viewModel.reglivedata.value = UserRegistration(0,firstname,lastname,mob.toLong(),em,password,confmpswd)
-
-            lifecycleScope.launch {
-                viewModel.insertUserRegistration()
+                lifecycleScope.launch {
+                    viewModel.insertUserRegistration()
+                }
+                startActivity(Intent(this, YourInfo::class.java))
             }
-            startActivity(Intent(this,YourInfo::class.java))
+            else{
+                return@setOnClickListener
+            }
         }
-
-
 
     }
 
-        private fun isValidMobileNumber(mobileNumber: String): Boolean {
-            return mobileNumber.length == 10 && mobileNumber.all { it.isDigit() }
+    private fun isValidFirstName(firstname:String):Boolean{
+        if (firstname.isEmpty()) {
+            binding!!.firstNameEditText.error = "Please Enter the Firstname"
+            return false
         }
+       else if (firstname.length <= 3 || !firstname.all { it.isLetter() }) {
+            binding!!.firstNameEditText.error = "Length should be greater than 3 or Only letters allowed"
+            return false
+        }
+        return true
+    }
+
+    private fun isValidLastName(lastname:String):Boolean{
+        if (lastname.isEmpty()) {
+            binding!!.lastNameEditText.error = "Please Enter the Lastname please"
+            return false
+        }
+       else if (lastname.length <= 3 || !lastname.all { it.isLetter() }) {
+            binding!!.lastNameEditText.error = "Length should be greater than 3 or Only letters allowed"
+            return false
+        }
+        return true
+    }
+
+    private fun isValidMobileNumber(mobileNumber: String):Boolean{
+        if(mobileNumber.length == 10 && mobileNumber.all { it.isDigit() }){
+            return true
+        }
+        else if(mobileNumber.isEmpty()){
+            binding!!.phoneEditText.error = "Enter 10 digit mobile no."
+            return false
+        }
+        binding!!.phoneEditText.error = "Enter the valid 10 digit mobile no."
+        return false
+    }
 
     private fun isValidEmail(email: String): Boolean {
+        if(email.isEmpty()){
+            binding!!.emailEditText.error = "Please Enter the email"
+            return false
+        }
         val emailPattern = Pattern.compile(
             "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+",
             Pattern.CASE_INSENSITIVE
         )
         val matcher = emailPattern.matcher(email)
-        return matcher.matches()
+         if(matcher.matches()==false){
+             binding!!.emailEditText.error = "Please Enter the valid email"
+             return false
+         }
+        return true
     }
 
+
     private fun isValidPassword(password: String): Boolean {
-        // Use a regex pattern for password validation
+        if(password.isEmpty()){
+            binding!!.passwordEditText.error = "Please Enter the phone number"
+            return false
+        }
         val passwordPattern = Pattern.compile(
             "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#\$%^&*()-_+=])[A-Za-z\\d!@#\$%^&*()-_+=]{8,}\$"
         )
         val matcher = passwordPattern.matcher(password)
-        return matcher.matches()
+
+        if(!matcher.matches()){
+            binding!!.passwordEditText.error = "Please Enter the valid password"
+            return false
+        }
+        return true
     }
 
+    private fun isValidConfirmpassword(password: String,confmpswd: String):Boolean{
+        if (password != confmpswd) {
+            binding!!.confirmPasswordEditText.error = "Please Enter the correct confirm password"
+            return false
+        }
+        else if(confmpswd.isEmpty()){
+            binding!!.confirmPasswordEditText.error = "Please Enter the confirm password"
+            return false
+        }
+        else {
+            return true
+        }
+    }
 
 
 }

@@ -19,9 +19,9 @@ import kotlinx.coroutines.launch
 class YourInfo : AppCompatActivity() {
     lateinit var viewModel:RegistrationViewModel
     lateinit var binding:ActivityYourInfoBinding
-    lateinit var eduselected:String
-    lateinit var desiselected : String
-    lateinit var domselected:String
+    var eduselected:String? = ""
+    var desiselected : String? = ""
+    var domselected:String? = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityYourInfoBinding.inflate(layoutInflater)
@@ -67,21 +67,95 @@ class YourInfo : AppCompatActivity() {
             domselected = selectedValue.toString()
         }
 
-
-
-
         binding.btnNext.setOnClickListener{
-
-
             val yearofpassing = binding.etYop.text.toString()
             val experience = binding.etExperience.text.toString()
-
             val grade = binding.etgrade.text.toString()
-            viewModel.infolivedata.value = UserInfo(0,0,eduselected,yearofpassing,grade,experience.toInt(),desiselected,domselected)
-            lifecycleScope.launch{
-               viewModel.insertUserInfo()
+
+            if(isvalideducation(eduselected!!) && isvalidpassingyear(yearofpassing) && isvalidGrade(grade)
+                && isvalidexperience(experience) && isvalidDesignation(desiselected!!) && isvalidedomain(domselected!!)) {
+                viewModel.infolivedata.value = UserInfo(
+                    0,
+                    0,
+                    eduselected,
+                    yearofpassing.toInt(),
+                    grade,
+                    experience.toInt(),
+                    desiselected!!,
+                    domselected!!
+                )
+                lifecycleScope.launch {
+                    viewModel.insertUserInfo()
+                }
+                startActivity(Intent(this, YourAdress::class.java))
             }
-             startActivity(Intent(this,YourAdress::class.java))
+            else {
+                return@setOnClickListener
+            }
          }
+
+        }
+
+        fun isvalideducation(ed:String):Boolean{
+            if(ed.isEmpty()){
+                binding.dropedu.error = "Please select your education"
+                return false
+            }
+            return true
+        }
+
+        fun isvalidDesignation(designation:String):Boolean{
+            if(designation.isEmpty()){
+                binding.dropdesignation.error = "Please select your designation"
+                return false
+            }
+            return true
+        }
+
+        fun isvalidedomain(domain:String):Boolean{
+            if(domain.isEmpty()){
+                binding.dropDomain.error = "Please select your domain"
+                return false
+            }
+            return true
+        }
+
+        fun isvalidpassingyear(pyear:String):Boolean{
+            if(pyear.isEmpty()){
+                binding.etYop.error = "Please select your domain"
+                return false
+            }
+            if (!pyear.all { it.isDigit() } || pyear.length!=4) {
+                binding.etYop.error = "Please enter valid year"
+                return false
+            }
+            return true
+        }
+
+        fun isvalidGrade(grade:String):Boolean{
+            if (grade.isEmpty()) {
+                binding.etgrade.error = "Please enter your grade"
+                return false
+            }
+
+            if (!grade.all { it.isLetter() || it.isDigit() } || grade.length>2) {
+                binding.etgrade.error = "grade can only be letter or digit"
+                return false
+            }
+            return true
+        }
+
+        fun isvalidexperience(exp:String):Boolean{
+            if (exp.isEmpty()) {
+                binding.etExperience.error = "Please enter your experience"
+                return false
+            }
+
+            if (!exp.all { it.isDigit() } || exp.length>2) {
+                binding.etExperience.error = "experience can only be less than 100"
+                return false
+            }
+            return true
+        }
+
     }
-}

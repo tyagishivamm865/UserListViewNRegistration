@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 class YourAdress : AppCompatActivity() {
     lateinit var binding:ActivityYourAdressBinding
     lateinit var viewModel:RegistrationViewModel
-    lateinit var selectedstate:String
+    var selectedstate:String? = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityYourAdressBinding.inflate(layoutInflater)
@@ -44,19 +44,80 @@ class YourAdress : AppCompatActivity() {
 
 
 
-        binding.btnSubmit.setOnClickListener{
+        binding.btnSubmit.setOnClickListener {
             val address = binding.etaddress.text.toString()
             val landmark = binding.etlandmark.text.toString()
             val pincode = binding.etpin.text.toString()
             val city = binding.etcity.text.toString()
 
-            viewModel.addlivedata.value = UserAdress(0,0,address,landmark,city,selectedstate,pincode)
+            if (isValidAdress(address) && isValidLandmark(landmark) && isValidCity(city)
+                && isValidState(selectedstate!!) && isValidPincode(pincode)
+            ) {
+                viewModel.addlivedata.value =
+                    UserAdress(0, 0, address, landmark, city, selectedstate!!, pincode)
 
-            lifecycleScope.launch {
-                viewModel.insertUserAddress()
-                startActivity(Intent(this@YourAdress,MainActivity::class.java))
+                lifecycleScope.launch {
+                    viewModel.insertUserAddress()
+                    startActivity(Intent(this@YourAdress, MainActivity::class.java))
+                }
             }
         }
 
     }
+    private fun isValidAdress(address:String):Boolean{
+        if (address.isEmpty()) {
+            binding.etaddress.error = "Please Enter your address"
+            return false
+        }
+        else if (address.length <= 3 || !address.all { it.isLetter() }) {
+            binding.etaddress.error = "Length should be greater than 3 or Only letters allowed"
+            return false
+        }
+        return true
+    }
+
+    private fun isValidLandmark(landmark:String):Boolean{
+        if (landmark.isEmpty()) {
+            binding.etlandmark.error = "Please Enter your landmark"
+            return false
+        }
+        else if (landmark.length <= 3 || !landmark.all { it.isLetter() }) {
+            binding.etlandmark.error = "Length should be greater than 3 or Only letters allowed"
+            return false
+        }
+        return true
+    }
+
+    private fun isValidCity(city:String):Boolean{
+        if (city.isEmpty()) {
+            binding.etcity.error = "Please Enter your city"
+            return false
+        }
+        else if (city.length <= 3 || !city.all { it.isLetter() }) {
+            binding.etcity.error = "Length should be greater than 3 or Only letters allowed"
+            return false
+        }
+        return true
+    }
+
+    private fun isValidPincode(pincode : String):Boolean{
+        if (pincode.isEmpty()) {
+            binding.etpin.error = "Please Enter your Zip/Pin code"
+            return false
+        }
+        else if (pincode.length != 6 || !pincode.all { it.isDigit() }) {
+            binding.etpin.error = "Enter only 6 digit"
+            return false
+        }
+        return true
+    }
+
+    private fun isValidState(state:String):Boolean{
+        if (state.isEmpty()) {
+            binding.dropstate.error = "Please Enter your state"
+            return false
+        }
+        return true
+    }
+
 }

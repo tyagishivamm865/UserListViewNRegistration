@@ -96,7 +96,7 @@ class MainActivity : AppCompatActivity() {
 
             alldata[position].educationInfo?.apply {
                 deducation.text = education
-                dpassingyear.text = year_of_passing
+                dpassingyear.text = year_of_passing.toString()
                 dcgpa.text = grade
                 dexperience.text = experience.toString()
                 ddesignation.text = designation

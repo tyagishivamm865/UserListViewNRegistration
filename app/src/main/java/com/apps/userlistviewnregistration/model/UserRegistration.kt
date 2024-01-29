@@ -31,7 +31,7 @@ data class UserInfo(
     val info_id: Long = 0,
     val userId:Long,
     val education:String?,
-    val year_of_passing:String,
+    val year_of_passing:Int,
     val grade:String,
     val experience:Int,
     val designation:String,
