@@ -36,7 +36,7 @@ class YourInfo : AppCompatActivity() {
 
 
         val education_values = arrayOf("Post Graduate", "Graduate", "HSC/Diploma", "SSC 4")
-        val designation_values = arrayOf("Associate Software Engineer", "Trainee Engineer", "Front-End Dev", "Back-End Dev")
+        val designation_values = arrayOf("Software Engineer", "Trainee Engineer", "Front-End Dev", "Back-End Dev")
         val domain_values = arrayOf("Android", "Ios", "FullStack", "DevOps","Cloud")
 
         val arrayAdapter_edu =
@@ -77,7 +77,7 @@ class YourInfo : AppCompatActivity() {
             val experience = binding.etExperience.text.toString()
 
             val grade = binding.etgrade.text.toString()
-            viewModel.infolivedata.value = UserInfo(0,0,"eduselected",yearofpassing,grade,experience.toInt(),desiselected,domselected)
+            viewModel.infolivedata.value = UserInfo(0,0,eduselected,yearofpassing,grade,experience.toInt(),desiselected,domselected)
             lifecycleScope.launch{
                viewModel.insertUserInfo()
             }

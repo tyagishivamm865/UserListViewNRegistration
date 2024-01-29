@@ -29,4 +29,8 @@ class UserRepository(context: Context) {
         return combineDao.getUsersWithEducationAndAddress()
     }
 
+    suspend fun getmixdata(): List<CombinedDataEntity>? {
+        return combineDao.getmixdata()
+    }
+
 }

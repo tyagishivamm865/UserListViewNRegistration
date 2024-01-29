@@ -40,4 +40,8 @@ class RegistrationViewModel(private val userRepository: UserRepository) : ViewMo
            return  userRepository.getAllCombinedData()
     }
 
+    suspend fun getmixdata(): List<CombinedDataEntity>? {
+        return  userRepository.getmixdata()
+    }
+
 }

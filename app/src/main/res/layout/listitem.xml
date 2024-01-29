@@ -10,7 +10,7 @@
         android:id="@+id/circularimgprev"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@color/black"
+        android:src="@drawable/profile"
         />
 <LinearLayout
     android:layout_width="wrap_content"

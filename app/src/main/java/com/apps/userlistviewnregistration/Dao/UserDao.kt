@@ -43,4 +43,7 @@ interface CombinedUserDao{
 @Transaction
 @Query("SELECT * FROM user_registration LEFT JOIN user_info ON user_registration.userId = user_info.userId LEFT JOIN user_Adress ON user_registration.userId = user_Adress.userId")
 fun getUsersWithEducationAndAddress(): LiveData<List<CombinedDataEntity>>?
+@Transaction
+@Query("SELECT * FROM user_registration LEFT JOIN user_info ON user_registration.userId = user_info.userId LEFT JOIN user_Adress ON user_registration.userId = user_Adress.userId")
+suspend fun getmixdata(): List<CombinedDataEntity>?
 }
